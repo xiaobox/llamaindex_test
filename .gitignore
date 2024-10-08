@@ -47,7 +47,7 @@ Thumbs.db
 *.log
 
 # 环境变量文件
-# .env
+.env
 
 # 数据库文件
 *.db
