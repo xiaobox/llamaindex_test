@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+
+# 环境变量文件
+.env
+
+# 数据库文件
+*.db
+*.sqlite3
+
+# 临时文件
+*.tmp
+*.bak
+*.swp
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 项目特定文件（如果有的话）
+# data/
+# config.ini

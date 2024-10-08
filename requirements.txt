@@ -1,0 +1,16 @@
+#执行以下命令安装依赖库：pip3  install -r requirements.txt  
+
+llama-index
+# 处理docx文件所需，暂时无用
+docx2txt
+python-dotenv
+#openai 库暂时没有用到
+openai
+# 使用ollama的模型
+llama-index-llms-ollama
+# 使用huggingface中的embedding模型
+llama-index-embeddings-huggingface
+
+# ZhipuAI API 客户端
+zhipuai==2.1.5.20230904
+
