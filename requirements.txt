@@ -26,4 +26,4 @@ chromadb==0.5.12
 
 pymilvus==2.4.7
 
-spacy==3.8.2
+#spacy==3.8.2
