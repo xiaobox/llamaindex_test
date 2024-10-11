@@ -1,4 +1,5 @@
 #执行以下命令安装依赖库：pip3  install -r requirements.txt  
+#查看具体库的版本： pip show httpx
 
 llama-index
 # 处理docx文件所需，暂时无用
@@ -10,7 +11,19 @@ openai
 llama-index-llms-ollama
 # 使用huggingface中的embedding模型
 llama-index-embeddings-huggingface
+# 添加 llama-index 的 Chroma 向量存储支持
+llama-index-vector-stores-chroma
+# 添加 llama-index 的 Milvus 向量存储支持
+llama-index-vector-stores-milvus
 
 # ZhipuAI API 客户端
 zhipuai==2.1.5.20230904
+
+# 使用socks代理
+httpx[socks]==0.27.2
+
+chromadb==0.5.12
+
+pymilvus==2.4.7
+
 
