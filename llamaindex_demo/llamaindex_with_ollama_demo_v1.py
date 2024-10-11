@@ -3,6 +3,8 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.ollama import Ollama
 import sys
+from llamaindex_demo import logger
+
 
 def run_ollama_v1_query(query: str):
     # 从指定目录加载文档数据
@@ -24,13 +26,9 @@ def run_ollama_v1_query(query: str):
     response_stream = query_engine.query(query)
 
     # 流式输出响应
-    print("Ollama V1 查询结果：")
+    logger.info("Ollama V1 查询结果：")
     for text in response_stream.response_gen:
         print(text, end="", flush=True)
         sys.stdout.flush()  # 确保立即输出
 
-    print("\n查询完成")
-
-# 如果直接运行此脚本，执行示例查询
-if __name__ == "__main__":
-    run_ollama_v1_query("作者学习过的编程语言有哪些？")
+    logger.info("\n查询完成")

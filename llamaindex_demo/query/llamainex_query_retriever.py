@@ -1,8 +1,20 @@
 import os
 import sys
 from llama_index.vector_stores.milvus import MilvusVectorStore
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
-from llama_index.core import StorageContext, load_index_from_storage
+from llama_index.core import (
+    VectorStoreIndex,
+    SimpleDirectoryReader,
+    get_response_synthesizer,
+    Settings,
+)
+from llama_index.core import StorageContext
+from llama_index.core.retrievers import VectorIndexRetriever
+from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.postprocessor import (
+    SimilarityPostprocessor,
+    KeywordNodePostprocessor,
+)
+from llamaindex_demo import logger
 from llamaindex_demo.custom_llm_glm import GLM4LLM
 from llamaindex_demo.custom_embedding_zhipu import ZhipuEmbeddings
 
@@ -29,14 +41,41 @@ def get_or_create_index(is_create: bool = False):
         index = VectorStoreIndex.from_documents(
             documents, storage_context=storage_context
         )
-        print("已成功创建并存储新的索引。")
+        logger.info("已成功创建并存储新的索引。")
     else:
         index = VectorStoreIndex.from_vector_store(vector_store)
 
     return index
 
 
-def query_with_milvus(query: str, is_create: bool = False):
+def create_query_engine(index):
+    """
+    创建查询引擎 包含 检索器 响应合成器 节点后处理器
+    """
+    # configure retriever
+    retriever = VectorIndexRetriever(
+        index=index,
+        similarity_top_k=10,
+    )
+
+    # configure response synthesizer
+    response_synthesizer = get_response_synthesizer()
+
+    node_postprocessors = [
+        # KeywordNodePostprocessor(required_keywords=["Lisp"], exclude_keywords=["YC"]),
+        # SimilarityPostprocessor(similarity_cutoff=0.1),
+    ]
+    # assemble query engine
+    query_engine = RetrieverQueryEngine(
+        retriever=retriever,
+        response_synthesizer=response_synthesizer,
+        node_postprocessors=node_postprocessors,
+    )
+
+    return query_engine
+
+
+def query_with_custom_query(query: str, is_create: bool = False):
     # 设置LLM和嵌入模型
     Settings.llm = GLM4LLM()
     Settings.embed_model = ZhipuEmbeddings()
@@ -44,10 +83,11 @@ def query_with_milvus(query: str, is_create: bool = False):
     # 加载或创建索引
     index = get_or_create_index(is_create)
 
-    query_engine = index.as_query_engine(streaming=True)
+    # 创建查询引擎
+    query_engine = create_query_engine(index)
 
     # 执行查询
-    print("GLM-4 查询结果：")
+    logger.info("GLM-4 查询结果：")
     response = query_engine.query(query)
 
     # 处理并输出响应
@@ -60,4 +100,4 @@ def query_with_milvus(query: str, is_create: bool = False):
         # 非流式输出
         print(response.response, end="", flush=True)
 
-    print("\n查询完成")
+    logger.info("\n查询完成")

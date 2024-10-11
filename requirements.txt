@@ -20,10 +20,10 @@ llama-index-vector-stores-milvus
 zhipuai==2.1.5.20230904
 
 # 使用socks代理
-httpx[socks]==0.27.2
+httpx[socks]
 
 chromadb==0.5.12
 
 pymilvus==2.4.7
 
-
+spacy==3.8.2
