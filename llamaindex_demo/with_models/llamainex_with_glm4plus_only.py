@@ -3,7 +3,7 @@ import sys
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llamaindex_demo import logger
-from llamaindex_demo.custom_llm_glm import GLM4LLM
+from llamaindex_demo.custom.custom_llm_glm import GLM4LLM
 
 # 设置环境变量，禁用tokenizers的并行处理
 os.environ["TOKENIZERS_PARALLELISM"] = "false"

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LlamaIndex 测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        button { margin: 5px; padding: 10px; }
+        #output { white-space: pre-wrap; background-color: #f0f0f0; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>LlamaIndex 测试用例</h1>
+    {% for test in test_cases %}
+    <button onclick="runTest('{{ test }}')">{{ test }}</button>
+    {% endfor %}
+    <div id="output"></div>
+
+    <script>
+        function runTest(testName) {
+            document.getElementById('output').innerText = '正在运行测试...';
+            axios.post('/run_test', { test_name: testName })
+                .then(function (response) {
+                    document.getElementById('output').innerText = response.data.output;
+                })
+                .catch(function (error) {
+                    console.error('运行测试时发生错误:', error);
+                    document.getElementById('output').innerText = '运行测试时发生错误：' + error;
+                });
+        }
+    </script>
+</body>
+</html>

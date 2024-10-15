@@ -3,7 +3,7 @@ from llama_index.core.llms import CustomLLM, CompletionResponse, CompletionRespo
 from llama_index.core.llms.callbacks import llm_completion_callback
 from functools import cached_property
 from typing import Any
-from .config import ZHIPU_API_KEY
+from ..config import ZHIPU_API_KEY
 
 class GLM4LLM(CustomLLM):
     @cached_property

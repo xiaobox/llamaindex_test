@@ -2,7 +2,7 @@ from llama_index.core.embeddings import BaseEmbedding
 from zhipuai import ZhipuAI
 from typing import List, Any
 from pydantic import Field
-from .config import ZHIPU_API_KEY
+from ..config import ZHIPU_API_KEY
 
 class ZhipuEmbeddings(BaseEmbedding):
     client: ZhipuAI = Field(default_factory=lambda: ZhipuAI(api_key=ZHIPU_API_KEY))

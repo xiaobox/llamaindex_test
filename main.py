@@ -3,13 +3,20 @@ from llamaindex_demo.query.llamainex_query_retriever import query_with_custom_qu
 from llamaindex_demo.storage.llamainex_milvus import query_with_milvus
 from llamaindex_demo.storage.llamainex_local_file import query_with_local_file_index
 from llamaindex_demo.storage.llamainex_chromadb import query_with_chromadb
-from llamaindex_demo.llamainex_with_glm4plus_and_embedding3 import (
+from llamaindex_demo.with_models.llamainex_with_glm4plus_and_embedding3 import (
     run_glm4_query_with_embeddings,
 )
-from llamaindex_demo.llamainex_with_glm4plus_only import run_glm4_query
-from llamaindex_demo.llamainex_with_deepseek import run_deepseek_query
-from llamaindex_demo.llamaindex_with_ollama_demo_v1 import run_ollama_v1_query
-from llamaindex_demo.llamaindex_with_ollama_demo_v2 import run_ollama_v2_query
+from llamaindex_demo.with_models.llamainex_with_glm4plus_only import run_glm4_query
+from llamaindex_demo.with_models.llamainex_with_deepseek import run_deepseek_query
+from llamaindex_demo.with_models.llamaindex_with_ollama_demo_v1 import (
+    run_ollama_v1_query,
+)
+from llamaindex_demo.with_models.llamaindex_with_ollama_demo_v2 import (
+    run_ollama_v2_query,
+)
+from llamaindex_demo.with_models.llamainex_with_local_glm_local_embedding import (
+    run_glm4_query_with_local_glm_local_embedding,
+)
 from llamaindex_demo.config import logger
 
 
@@ -36,6 +43,10 @@ class TestLlamaIndex(unittest.TestCase):
     def test_glm4_with_embedding3(self):
         logger.info("\n使用 GLM-4 模型和 Embedding3 模型查询：")
         run_glm4_query_with_embeddings(self.query)
+
+    def test_glm4_with_local_glm_local_embedding(self):
+        logger.info("\n使用 GLM-4 本地模型和本地 Embedding 模型查询：")
+        run_glm4_query_with_local_glm_local_embedding(self.query)
 
     def test_glm4_only(self):
         logger.info("\n只使用 GLM-4 模型查询：")
@@ -64,13 +75,16 @@ def run_selected_tests(test_names):
 
 def main():
 
-    # 组合执行多个测试用例,也可只执行一个
+    # 组合执行多个测试用例,也可以只执行一个
     selected_tests = [
-        "test_milvus_storage",
-        #'test_local_file_storage'
+        # "test_custom_query",
+        # "test_local_file_storage",
+        #"test_glm4_with_embedding3",
+        "test_glm4_with_local_glm_local_embedding",
     ]
     run_selected_tests(selected_tests)
 
 
 if __name__ == "__main__":
+    # unittest.main()
     main()

@@ -2,8 +2,8 @@ import os
 import sys
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.core import StorageContext, load_index_from_storage
-from llamaindex_demo.custom_llm_glm import GLM4LLM
-from llamaindex_demo.custom_embedding_zhipu import ZhipuEmbeddings
+from llamaindex_demo.custom.custom_llm_glm import GLM4LLM
+from llamaindex_demo.custom.custom_embedding_zhipu import ZhipuEmbeddings
 
 # 设置环境变量，禁用tokenizers的并行处理
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
