@@ -80,7 +80,8 @@ def main():
         # "test_custom_query",
         # "test_local_file_storage",
         #"test_glm4_with_embedding3",
-        "test_glm4_with_local_glm_local_embedding",
+        "test_glm4_only",
+        #"test_glm4_with_local_glm_local_embedding",
     ]
     run_selected_tests(selected_tests)
 

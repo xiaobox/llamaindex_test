@@ -11,7 +11,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 def run_glm4_query(query: str):
     # 从指定目录加载文档数据
-    documents = SimpleDirectoryReader("data").load_data()
+    documents = SimpleDirectoryReader(input_files=["./data/sample.txt"]).load_data()
 
     # 设置LLM和嵌入模型
     Settings.llm = GLM4LLM()
