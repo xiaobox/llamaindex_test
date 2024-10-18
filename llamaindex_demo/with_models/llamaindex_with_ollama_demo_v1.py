@@ -8,13 +8,13 @@ from llamaindex_demo import logger
 
 def run_ollama_v1_query(query: str):
     # 从指定目录加载文档数据
-    documents = SimpleDirectoryReader("data").load_data()
+    documents = SimpleDirectoryReader(input_files=["./data/sample.txt"]).load_data()
 
     # 设置嵌入模型，使用北京智源人工智能研究院的中文嵌入模型
     Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-zh-v1.5")
 
-    # 设置语言模型，使用Ollama提供的Qwen2 7B模型，并设置请求超时时间
-    Settings.llm = Ollama(model="qwen2:7b", request_timeout=360.0)
+    # 设置语言模型，使用Ollama提供的 glm4:9b 模型，并设置请求超时时间
+    Settings.llm = Ollama(model="glm4:9b", request_timeout=360.0)
 
     # 使用加载的文档创建向量存储索引
     index = VectorStoreIndex.from_documents(documents)
