@@ -8,8 +8,8 @@ from llamaindex_demo.custom.custom_llm_glm_local import LocalGLM4
 
 def run_glm4_query_with_local_glm_local_embedding(query: str):
 
-    embed_model_path = "/home/nlp/model/Embedding/BAAI/bge-m3"
-    pretrained_model_name_or_path = r"/home/nlp/model/LLM/THUDM/glm-4-9b-chat"
+    embed_model_path = "/root/autodl-tmp/BAAI/bge-base-zh-v1.5"
+    pretrained_model_name_or_path = r"/root/autodl-tmp/ZhipuAI/glm-4-9b-chat"
 
     # 设置LLM和嵌入模型
     Settings.llm = LocalGLM4(pretrained_model_name_or_path)
