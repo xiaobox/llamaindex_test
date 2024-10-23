@@ -2,26 +2,26 @@
 #更新pip3 pip3 install --upgrade --no-cache-dir pip
 #查看具体库的版本： pip show httpx
 
-llama-index
+llama-index==0.11.14
 # 处理docx文件所需，暂时无用
-docx2txt
-python-dotenv
+docx2txt==0.8
+python-dotenv==1.0.1
 #openai 库暂时没有用到
-openai
+openai==1.50.2
 # 使用ollama的模型
-llama-index-llms-ollama
+llama-index-llms-ollama==0.3.4
 # 使用huggingface中的embedding模型
-llama-index-embeddings-huggingface
+llama-index-embeddings-huggingface==0.3.1
 # 添加 llama-index 的 Chroma 向量存储支持
-llama-index-vector-stores-chroma
+llama-index-vector-stores-chroma==0.2.1
 # 添加 llama-index 的 Milvus 向量存储支持
-llama-index-vector-stores-milvus
+llama-index-vector-stores-milvus==0.2.7
 
 # ZhipuAI API 客户端
 zhipuai==2.1.5.20230904
 
 # 使用socks代理
-httpx[socks]
+httpx[socks]==0.27.2
 
 chromadb==0.5.15
 

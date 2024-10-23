@@ -8,6 +8,7 @@ from llamaindex_demo.custom.custom_llm_deepseek import DeepSeekLLM
 # 设置环境变量，禁用tokenizers的并行处理
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
+
 def run_deepseek_query(query: str):
     # 从指定目录加载文档数据
     documents = SimpleDirectoryReader("data").load_data()
